@@ -1,0 +1,63 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// 1. Enum untuk Role User
+enum Role {
+  REPORTER
+  EDITOR
+}
+
+// 2. Enum untuk Tipe Lokasi Job
+enum LocationType {
+  PHYSICAL
+  REMOTE
+}
+
+// 3. Enum untuk Alur Status Job (Sesuai Soal)
+enum JobStatus {
+  NEW
+  ASSIGNED
+  TRANSCRIBED
+  REVIEWED
+  COMPLETED
+}
+
+// 4. Tabel User (Staf)
+model User {
+  id           String   @id @default(uuid())
+  name         String
+  role         String   // REPORTER / EDITOR
+  location     String
+  isAvailable  Boolean  @default(true)
+  
+  reporterJobs Job[]    @relation("ReporterJobs")
+  editorJobs   Job[]    @relation("EditorJobs")
+}
+
+// 5. Tabel Job (Pekerjaan)
+model Job {
+  id           String   @id @default(uuid())
+  caseName     String
+  duration     Int
+  locationType String   // PHYSICAL / REMOTE
+  jobLocation  String?
+  status       String   // NEW, ASSIGNED, TRANSCRIBED, REVIEWED, COMPLETED
+  createdAt    DateTime @default(now())
+
+  reporterId   String?
+  reporter     User?    @relation("ReporterJobs", fields: [reporterId], references: [id])
+
+  editorId     String?
+  editor       User?    @relation("EditorJobs", fields: [editorId], references: [id])
+}
