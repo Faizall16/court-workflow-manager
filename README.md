@@ -150,5 +150,3 @@ The system operates on a strict **State Machine** model to ensure data integrity
 ```
 
 ---
-
-A
