@@ -67,13 +67,13 @@ Ensure you have **Node.js** and **pnpm** installed on your operating system.
 1. Navigate into the backend directory:
 
 ```
-   cd backend
+cd backend
 ```
 
 2. Install dependencies:
 
 ```
-   pnpm install
+pnpm install
 ```
 
 3. Set up your environment variables by copying .env.example to .env and updating your database credentials.
@@ -81,13 +81,13 @@ Ensure you have **Node.js** and **pnpm** installed on your operating system.
 4. Run database migrations and seed default user data:
 
 ```
-   pnpm prisma migrate dev
+pnpm prisma migrate dev
 ```
 
 5. Start the backend service:
 
 ```
-   pnpm dev
+pnpm dev
 ```
 
 The server will boot up natively at http://localhost:5001.
@@ -97,13 +97,13 @@ The server will boot up natively at http://localhost:5001.
 1. Open a new terminal tab and navigate into the frontend directory:
 
 ```
-   cd ../frontend
+cd ../frontend
 ```
 
 2. Install dependencies:
 
 ```
-   pnpm install
+pnpm install
 ```
 
 3. Create a local environment file named .env.local and specify the API gateway endpoint:
@@ -111,13 +111,13 @@ The server will boot up natively at http://localhost:5001.
 Input this:
 
 ```
-   NEXT_PUBLIC_API_URL=http://localhost:5001/api
+NEXT_PUBLIC_API_URL=http://localhost:5001/api
 ```
 
 4. Start the frontend client service:
 
 ```
-   pnpm dev
+pnpm dev
 ```
 
 The client dashboard will be available live at http://localhost:3000.
